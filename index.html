@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="ch">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>引航罗盘求解工具-穹批v1.0</title>
+    <title>Document</title>
 </head>
 <body>
 <label>环模式</label>
@@ -103,6 +103,15 @@
         startA*=60;
         startB*=60;
         startC*=60;
+        if(document.getElementById("circleA").checked){
+            speedA=-speedA;
+        }
+        if(document.getElementById("circleB").checked){
+            speedB=-speedB;
+        }
+        if(document.getElementById("circleC").checked){
+            speedC=-speedC;
+        }
         for(var X=0;X<10;X++){
             for(var Y=0;Y<10;Y++){
                 for(var Z=0;Z<10;Z++){
