@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+<label>环模式</label>
+<div><input type="checkbox" id="cb1" value="A" onchange="checkCB()" checked>A</div>
+<div><input type="checkbox" id="cb2" value="B" onchange="checkCB()" checked>B</div>
+<div><input type="checkbox" id="cb3" value="C" onchange="checkCB()" checked>C</div>
+<div><input type="checkbox" id="cb4" value="AB" onchange="checkCB()" disabled>AB</div>
+<div><input type="checkbox" id="cb5" value="BC" onchange="checkCB()" disabled>BC</div>
+<div><input type="checkbox" id="cb6" value="AC" onchange="checkCB()" disabled>AC</div>
+<div>
+    内环起点<input type="number" id="startA" value="1" onchange="checkInt(0, 5, this)">
+    内环速度<input type="number" id="speedA" value="1" onchange="checkInt(1, 4, this)">
+    逆时针<input type="checkbox" id="circleA">
+</div>
+<div>
+    中环起点<input type="number" id="startB" value="1" onchange="checkInt(0, 5, this)">
+    中环速度<input type="number" id="speedB" value="1" onchange="checkInt(1, 4, this)">
+    逆时针<input type="checkbox" id="circleB">
+</div>
+<div>
+    外环起点<input type="number" id="startC" value="1" onchange="checkInt(0, 5, this)">
+    外环速度<input type="number" id="speedC" value="1" onchange="checkInt(1, 4, this)">
+    逆时针<input type="checkbox" id="circleC">
+</div>
+<button onclick="startCal()">计算</button>
+</body>
+
+<script>
+    function checkInt(a, b, com){
+        if(com.value <a || com.value>b){
+            com.value = a;
+            alert("数字范围必须在"+a+"到"+b+"之间");
+            return;
+        }
+        com.value = parseInt(com.value, 10);
+    }
+    function checkCB(){
+        var cbname = "cb";
+        var cnt = 0;
+        for(var i =1;i<=6;i++){
+            var cbox = document.getElementById("cb"+i);
+            if(cbox.checked){
+                cnt+=1
+                if(cnt>=3){
+                    break;
+                }
+            }
+        }
+        if(cnt < 3){
+            for(var i =1;i<=6;i++){
+                var cbox = document.getElementById("cb"+i);
+                cbox.disabled=false;
+            }
+        }else{
+            for(var i =1;i<=6;i++){
+                var cbox = document.getElementById("cb"+i);
+                if(!cbox.checked){
+                    cbox.disabled=true;
+                }
+            }
+        }
+    }
+    function getCircle(pat, start, speed, X, Y, Z, c){
+	    var V = [X, Y, Z]
+	    var rot = 0
+	    for(var i=0;i<pat.length;i++){
+            if(pat[i].indexOf(c)!==-1){
+                rot += speed * V[i];
+            }
+        }
+	    return rot + start;
+    }
+    function startCal(){
+        var circle = [];
+        var cbname = "cb";
+        for(var i =1;i<=6;i++){
+            var cbox = document.getElementById("cb"+i);
+            if(cbox.checked){
+                circle.push(cbox.value);
+            }
+        }
+        if(circle.length !== 3){
+            alert("需要勾选3种环绑定模式");
+            return;
+        }
+        var speedA = document.getElementById("speedA").value;
+        var speedB = document.getElementById("speedB").value;
+        var speedC = document.getElementById("speedC").value;
+        var startA = document.getElementById("startA").value;
+        var startB = document.getElementById("startB").value;
+        var startC = document.getElementById("startC").value;
+        speedA*=60;
+        speedB*=60;
+        speedC*=60;
+        startA*=60;
+        startB*=60;
+        startC*=60;
+        for(var X=0;X<10;X++){
+            for(var Y=0;Y<10;Y++){
+                for(var Z=0;Z<10;Z++){
+                    var rotA = getCircle(circle, startA, speedA, X, Y, Z, 'A');
+                    var rotB = getCircle(circle, startB, speedB, X, Y, Z, 'B');
+                    var rotC = getCircle(circle, startC, speedC, X, Y, Z, 'C');
+				    if(rotA % 360 === 0 && rotB % 360 === 0 && rotC % 360 === 0 ){
+                        alert(circle[0]+"旋转"+X+"次\n"+
+                        circle[1]+"旋转"+Y+"次\n"+
+                        circle[2]+"旋转"+Z+"次\n");
+                        return;
+                    }
+                }
+            }
+        }
+        alert("无解");
+    }
+</script>
+</html>
