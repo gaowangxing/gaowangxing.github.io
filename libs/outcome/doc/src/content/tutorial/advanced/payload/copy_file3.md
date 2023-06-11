@@ -18,7 +18,7 @@ threw the exact same `filesystem_error` as the Filesystem TS does.
 Telling Outcome how to throw a `filesystem_error` with payload of the
 failing paths is easy:
 
-[{% snippet "outcome_payload.cpp" "filesystem_api_custom_throw" %}]
+[{ % snippet "outcome_payload.cpp" "filesystem_api_custom_throw" % }]
 
 Reference documentation for the above functions:
 
