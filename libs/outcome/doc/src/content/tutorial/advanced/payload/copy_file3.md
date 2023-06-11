@@ -23,7 +23,7 @@ failing paths is easy:
 Reference documentation for the above functions:
 
 - [List of builtin `outcome_throw_as_system_error_with_payload()` overloads]({{< relref "/reference/functions/policy" >}})
-- {{% api "void try_throw_std_exception_from_error(std::error_code ec, const std::string &msg = std::string{})" %}}
+- {{ % api "void try_throw_std_exception_from_error(std::error_code ec, const std::string &msg = std::string{})" % }}
 
 Usage of our new "upgraded" Filesystem `copy_file()` might now be as follows:
 
