@@ -18,14 +18,14 @@ threw the exact same `filesystem_error` as the Filesystem TS does.
 Telling Outcome how to throw a `filesystem_error` with payload of the
 failing paths is easy:
 
-{{% snippet "outcome_payload.cpp" "filesystem_api_custom_throw" %}}
+[{% snippet "outcome_payload.cpp" "filesystem_api_custom_throw" %}]
 
 Reference documentation for the above functions:
 
 - [List of builtin `outcome_throw_as_system_error_with_payload()` overloads]({{< relref "/reference/functions/policy" >}})
-- {{ % api "void try_throw_std_exception_from_error(std::error_code ec, const std::string &msg = std::string{})" % }}
+- [{ % api "void try_throw_std_exception_from_error(std::error_code ec, const std::string &msg = std::string{})" % }]
 
 Usage of our new "upgraded" Filesystem `copy_file()` might now be as follows:
 
-{{% snippet "outcome_payload.cpp" "filesystem_api_custom_throw_demo" %}}
+[{% snippet "outcome_payload.cpp" "filesystem_api_custom_throw_demo" %}]
 

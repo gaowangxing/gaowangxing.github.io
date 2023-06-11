@@ -7,7 +7,7 @@ tags = ["payload"]
 
 An Outcome based solution to the dual overload problem is straightforward:
 
-{{ % snippet "outcome_payload.cpp" "filesystem_api_fixed" % }}
+[{ % snippet "outcome_payload.cpp" "filesystem_api_fixed" % }]
 
 Starting at the bottom, there is now a single `copy_file()` function which returns a `fs_result<void>`.
 As `result` is either successful or not, there is no longer any point in returning a boolean, so we

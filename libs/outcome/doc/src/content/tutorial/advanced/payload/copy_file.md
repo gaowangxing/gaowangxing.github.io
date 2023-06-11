@@ -12,7 +12,7 @@ Consider the
 [`copy_file()`](http://en.cppreference.com/w/cpp/filesystem/copy_file)
 API from the Filesystem TS:
 
-{{ % snippet "outcome_payload.cpp" "filesystem_api_problem" % }}
+[{ % snippet "outcome_payload.cpp" "filesystem_api_problem" % }]
 
 Before Outcome, the common design pattern was to provide throwing and non-throwing overloads
 of every API. As you can see above, the throwing API throws a [`filesystem::filesystem_error`](http://en.cppreference.com/w/cpp/filesystem/filesystem_error)
